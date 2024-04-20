@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="poker.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+<body>
+  <div>
+    <h2>CPU Card:</h2>
+<div id="playerCards">
+  <div id="playerCard3"></div>
+  <div id="playerCard4"></div>
+  </div>
+  <hr>
+<h2>Board:</h2>
+    <div id="board" style="display: block;"></div>
+    <div id="card1"></div>
+    <div id="card2"></div>
+    <div id="card3"></div>
+    <div id="card4"></div>
+    <div id="card5"></div>
+</div>
+<hr>
+<h2>Player's Card:</h2>
+<div id="playerCards">
+  <div id="playerCard1"></div>
+  <div id="playerCard2"></div>
+  
+    <button onclick ="start()"id ="buttonstar1">Start</button>
+    <button onclick="nextStep(this);"id ="buttonstar1">Reveal first 3 cards</button>
+    <button onclick="surrnder()"id ="buttonstar1">Surrender</button>
+    
+
+ 
+</div> 
+
+
+<script src="poker.js"></script>
+<label for="" id="result"></label>
+</body>
+</html>
