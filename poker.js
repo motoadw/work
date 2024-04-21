@@ -394,6 +394,7 @@ class Deck {
     if (highestCombination.highestCombination > cpuhighestCombination.cpuhighestCombination){
       // re.innerHTML = "Winner is player"
       // alert("c")
+      correct.play()
       Swal.fire({
         title: "Good job!",
         text: "Winner is player!",
@@ -403,6 +404,7 @@ class Deck {
     else if(highestCombination.highestCombination === cpuhighestCombination.cpuhighestCombination){
       // re.innerHTML = "Draw"
       // alert("Draw");
+      drawSound.play()
       Swal.fire({
         title: "Draw",
         text: "Let's start a new game?",
@@ -412,6 +414,7 @@ class Deck {
     else{
       // re.innerHTML = "Winner is cpu"
       // alert("Winner is cpu")
+      wrong.play()
       Swal.fire({
         icon: "error",
         title: "Winner is cpu!",
@@ -420,21 +423,30 @@ class Deck {
     }
   }
   
+  var cardSound = document.getElementById("cardSound");
+  var correct = document.getElementById("correctSound");
+  var wrong = document.getElementById("wrongSound");
+  var drawSound = document.getElementById("quiz");
+
   function start() {
     deal();
+    cardSound.play()
   }
   
   function nextStep(el) {
     let re = document.getElementById("result")
     if (!card1.flipped) {
+      cardSound.play()
       card1.flip();
       card2.flip();
       card3.flip();
       el.innerHTML = "Reveal 4<sup>th</sup> card";
     } else if (!card4.flipped) {
+      cardSound.play()
       card4.flip();
       el.innerHTML = "Reveal 5<sup>th</sup> card";
     } else if (!card5.flipped) {
+      cardSound.play()
       card5.flip();
       el.innerHTML = "Show card"
       // playerCard3.flip();
@@ -442,6 +454,7 @@ class Deck {
       // el.innerHTML = "New Round";
     } 
     else if(!playerCard3.flipped){
+      cardSound.play()
       playerCard3.flip();
       playerCard4.flip();
       el.innerHTML = "results"
