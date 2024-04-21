@@ -473,5 +473,41 @@ class Deck {
   function surrnder() {
     deal();
   }
+
+  // ****************** bg-music **************************
+  
+  window.onload = function() { // เรียกใช้งานฟังก์ชันเมื่อโหลดหน้าเว็บเสร็จสมบูรณ์
+  playBackgroundMusic();
+}
+    var audio = new Audio('casino-164235-bg.mp3');
+
+  function playBackgroundMusic() {
+      audio.volume = 0.2; // ปรับระดับเสียง
+      audio.loop = true;
+      audio.play();
+      }
+  
+  function resetBackgroundMusic() {
+    audio.pause(); // หยุดเล่นเพลง
+    audio.currentTime = 0; // ให้เริ่มเล่นเพลงใหม่ที่จุดเริ่มต้น
+    playBackgroundMusic(); // เริ่มเล่นเพลงใหม่
+}
+
+var audio = document.getElementById('backgroundMusic');
+var isMuted = false;
+
+function toggleSound() {
+    if (isMuted) {
+        audio.volume = 0.2; // เปิดเสียง
+        document.getElementById('toggleButton').innerText = "🔊";
+    } else {
+        audio.volume = 0; // ปิดเสียง
+        document.getElementById('toggleButton').innerText = "🔇";
+    }
+        isMuted = !isMuted; // เปลี่ยนสถานะการเปิด-ปิดเสียง
+}
+document.getElementById('toggleButton').addEventListener('click', toggleSound);
+
+
   
  
