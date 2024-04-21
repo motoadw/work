@@ -3,12 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Poker Card</title>
     <link rel="stylesheet" href="poker.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 <body>
+
+  <!-- ขวาบน -->
+  <button id="myButton" style="position: absolute; top: 10; right: 0;">!</button>
+  <div id="myImage" style="display: none; position: fixed; top: 10; left: 0; width: 100%; height: 100%; z-index: 10;">
+    <img src="https://lh3.googleusercontent.com/pw/AP1GczOq8XeHonJg5rGkLyCugjuTXkke5shM5N8yybME6_J5ga7vzyN74anmn2f5f4xZqySU1Gcj2znJHlRxENquRjVeSOS8IDXlFNb4dTpmKMqTkvACHLZC9RsC9oDJjfJD1_vD60N6SKPdE2ZocfgCLr_7=w1634-h919-s-no-gm?authuser=0" alt="#">
+    <button id="closeButton">&times;</button>
+  </div>
+  <!-- ขวาบน -->
   <div>
     <h2>CPU Card:</h2>
 <div id="playerCards">
@@ -32,7 +40,7 @@
   
     <button onclick ="start()"id ="buttonstar1">Start</button>
     <button onclick="nextStep(this);"id ="buttonstar1">Reveal first 3 cards</button>
-    <button onclick="surrnder()"id ="buttonstar1">Surrender</button>
+    <!-- <button onclick="surrnder()"id ="buttonstar1">Surrender</button> -->
     
 
  
