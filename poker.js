@@ -1,3 +1,19 @@
+// ปุุ่มขวาบน
+const myButton = document.getElementById('myButton');
+const myImage = document.getElementById('myImage');
+const closeButton = document.getElementById('closeButton');
+
+myButton.addEventListener('click', () => {
+  myImage.style.display = 'block';
+});
+
+closeButton.addEventListener('click', () => {
+  myImage.style.display = 'none';
+});
+closeButton.addEventListener('click', () => {
+  myImage.src = 'newImage.jpg';
+});
+// ปุ่มขวาบน
 class Deck {
     constructor() {
       this.deck = [];
