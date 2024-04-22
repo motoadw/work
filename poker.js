@@ -14,6 +14,8 @@ closeButton.addEventListener('click', () => {
   myImage.src = 'newImage.jpg';
 });
 // ปุ่มขวาบน
+
+
 class Deck {
     constructor() {
       this.deck = [];
@@ -21,11 +23,14 @@ class Deck {
       this.shuffle(); // Shuffle the deck
     } // End of constructor
   
+
     reset() {
+      // เพิ่มในสไลเรื่อง จัดเก็บ Array ว่าใช้ยังไงทำงานแบบไหนอธิบายเพิ่มเติม
       this.deck = [];
       const suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
       const values = ['Ace', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King'];
   
+      // วนลูป ดอกกับค่าไผ่ น่าจะเป็น หัวข้อ recursive ไม่แน่ใจ
       for (let suit of suits) {
         for (let value of values) {
           this.deck.push(`${value} of ${suit}`);
@@ -33,6 +38,7 @@ class Deck {
       }
     } // End of reset()
   
+    // Fisher-Yates Shuffle ไม่ได้จัดเลียงแบบแผนแต่จัดแบบสุ่ม เว็ปเรียน"https://www.youtube.com/watch?v=tLxBwSL3lPQ&ab_channel=AdamKhoury"
     shuffle() {
       let numberOfCards = this.deck.length;
       for (let i = 0; i < numberOfCards; i++) {
@@ -42,14 +48,23 @@ class Deck {
         this.deck[j] = tmp;
       }
     } // End of shuffle()
+
+    
+// โค้ด shuffle() ที่คุณให้มาเป็นการสร้างฟังก์ชันที่ทำหน้าที่ในการสลับลำดับของไพ่ในสำรับไพ่ ดังนี้:
+// numberOfCards จะถูกกำหนดค่าเป็นความยาวของอาร์เรย์ของสำรับไพ่.
+// การวนลูปเกิดขึ้นสำหรับแต่ละไพ่ในสำรับไพ่.
+// ภายในลูป, ดัชนีสุ่ม j ถูกสร้างขึ้นโดยใช้ Math.random() เพื่อแทนตำแหน่งของไพ่อื่นในสำรับไพ่.
+// ไพ่ที่ตำแหน่ง i ถูกเก็บไว้ชั่วคราวใน tmp.
+// ไพ่ที่ตำแหน่ง i ถูกแทนที่ด้วยไพ่ที่ตำแหน่ง j.
+// ไพ่ที่ตำแหน่ง j ถูกแทนที่ด้วยไพ่ที่ถูกเก็บไว้ใน tmp, ซึ่งทำให้การสลับตำแหน่งของไพ่สองใบเกิดขึ้น.
+// การวนลูปดำเนินต่อไปจนกระทั่งไพ่ทั้งหมดในสำรับไพ่ถูกสลับลำดับเรียบร้อย.
+// ฟังก์ชันนี้ทำให้สำรับไพ่ถูกสลับลำดับโดยการสลับตำแหน่งของไพ่อย่างสุ่มหลายครั้ง ซึ่งทำให้ได้ลำดับที่สุ่มมาใหม่ของไพ่แต่ละใบในสำรับไพ่แล้วละเอียด.
+
   
     deal() {
       return this.deck.pop();
     } // End of deal()
   
-    isEmpty() {
-      return this.deck.length == 0;
-    } // End of isEmpty()
   
     length() {
       return this.deck.length;
@@ -115,15 +130,46 @@ class Deck {
       };
   
       this.value = cardValues[card];
+
+
       this.suit = card.substring(card.indexOf(" of ") + 4);
+//       indexOf(" of ") จะคืนค่าดัชนี (index) ของตำแหน่งแรกของ " of " ในข้อความของบัตร
+// substring() จะตัดข้อความของบัตรเริ่มต้นจากตำแหน่งที่ " of " จบ และเลื่อนไปอีก 4 ตำแหน่ง (จำนวนตัวอักษรใน " of ")
+// นั่นหมายความว่า this.suit จะถูกกำหนดค่าเป็นสัญลักษณ์ของไพ่ (เช่น "Hearts", "Diamonds" เป็นต้น) โดยอิงจากชื่อของบัตรที่รับเข้ามา
+    
+
+
+
       this.placeHolder = null;
       this.flipped = false;
   
+
+
+
       const suits = { 'Hearts': 0, 'Diamonds': 13, 'Clubs': 26, 'Spades': 39 };
       this.position = suits[this.suit] + this.value; // Position in a sorted deck
+
+//       suits เป็นอ็อบเจกต์ที่แมปชื่อของสัญลักษณ์ไพ่กับตำแหน่งของสัญลักษณ์นั้นในสำรับที่ถูกเรียงลำดับ
+// this.position ถูกกำหนดค่าโดยการรวมค่าของสัญลักษณ์ของไพ่ (this.suit) และค่าตัวเลขของไพ่ (this.value) เพื่อให้ได้ตำแหน่งที่ตรงกับบัตรนั้นในสำรับที่เรียงลำดับแล้ว
+// ตัวอย่างเช่น หากบัตรเป็น "3 of Diamonds" (this.suit คือ "Diamonds" และ this.value คือ 3) คำนวณ this.position จะได้:
+
+// suits['Diamonds'] = 13
+// this.value = 3
+// this.position = 13 + 3 = 16
+// ดังนั้น ตำแหน่งของบัตร "3 of Diamonds" ในสำรับที่ถูกเรียงลำดับแล้วคือที่ตำแหน่งที่ 16 ในสำรับนั้น
+
+
+
+
     } // End of Constructor
   
     
+
+
+
+
+
+
 
     displayCard(placeHolder, flipped = true) {
       this.placeHolder = document.getElementById(placeHolder);
@@ -136,19 +182,51 @@ class Deck {
       }
     } // End of displayCard
   
+
+
+
+
+
+// ก้อปสร้าง array ใหม่มาเพื่อใช้ในการเช็คค่า
     checkCardValue1(cards) {
       // Array to store the values of all cards
       const cardValues = cards.map(card => card.value);
+        
+  // map() จะถูกใช้กับอาร์เรย์ cards เพื่อสร้างอาร์เรย์ใหม่ cardValues.
+  // ในการเรียกใช้ map() นี้, ฟังก์ชันที่ให้กำหนดจะถูกเรียกใช้สำหรับแต่ละสมาชิกใน cards.
+  // ฟังก์ชันนี้จะรับบัตรแต่ละใบ (card) เข้ามาและส่งคืนค่า value ของบัตรนั้น.
+  // ดังนั้น, cardValues จะเป็นอาร์เรย์ที่ประกอบด้วยค่า value ของบัตรทั้งหมดในอาร์เรย์ cards.
+
   
+
+
+// ไม่เข้าใจ
       // Count occurrences of each value
       const valueCounts = {};
       for (const value of cardValues) {
           valueCounts[value] = (valueCounts[value] || 0) + 1;
       }
+//       การทำงานของโค้ดนี้คือ:
+
+// สร้างอ็อบเจกต์ valueCounts ซึ่งจะใช้ในการเก็บจำนวนครั้งที่แต่ละค่า value ปรากฏในอาร์เรย์ cardValues.
+// ในการวนลูป for...of นี้, แต่ละค่า value ในอาร์เรย์ cardValues ถูกดึงออกมา.
+// ในแต่ละรอบของลูป, โค้ดจะตรวจสอบว่า valueCounts มี key value หรือไม่:
+// หากมี จะเพิ่มจำนวนที่ปรากฏของ value นั้นขึ้นอีก 1.
+// หากไม่มี จะกำหนด valueCounts[value] เป็น 1 เพื่อระบุว่า value นั้นปรากฏครั้งแรกในอาร์เรย์ cardValues.
+// ดังนั้น, หลังจากการทำงานของลูปนี้เสร็จสิ้น, valueCounts จะเป็นอ็อบเจกต์ที่บอกถึงจำนวนครั้งที่แต่ละค่า value ปรากฏในอาร์เรย์ cardValues
   
+
+
+
+
+
+
+
+// เลียงค่าไผ่
       // Get unique values and sort them in descending order
       const uniqueValues = Object.keys(valueCounts).map(Number).sort((a, b) => a - b);
     
+
         // Check for straight
         let isStraight = false;
         for (let i = 0; i < uniqueValues.length - 4; i++) {
@@ -161,7 +239,10 @@ class Deck {
             }
         }
     
+
+
         // Check for flush
+        // หัวข้อ revursive 
         let isFlush = false;
         const countFlush = {};
         for (const card of cards) {
@@ -172,6 +253,8 @@ class Deck {
             }
         }
     
+
+
         // Check for straight flush
         const isStraightFlush = isStraight && isFlush;
     
@@ -225,6 +308,8 @@ class Deck {
         return {highestCombination,showCardHighestText}
 
       }
+
+      
       checkCardValue2(cards) {
         // Array to store the values of all cards
         const cardValues = cards.map(card => card.value);
@@ -329,13 +414,9 @@ class Deck {
   } // End of Card class
   
   const deck = new Deck();
-  let playerCard1, playerCard2,playerCard3,playerCard4;
-  // let card1, card2, card3, card4, card5, playerCard1, playerCard2,playerCard3,playerCard4;
-  let card1 = 2
-  let card2 = 3
-  let card3 = 4
-  let card4 = 5
-  let card5 = 6
+  // let playerCard1, playerCard2,playerCard3,playerCard4;
+  let card1, card2, card3, card4, card5, playerCard1, playerCard2,playerCard3,playerCard4;
+
 
   function deal() {
     if (deck.length() < 7) {
@@ -378,19 +459,22 @@ class Deck {
 
     const highestCombination = playerCard1.checkCardValue1(allCards);
     const cpuhighestCombination = playerCard3.checkCardValue2(cpuCards);
-    console.log("Player Highest combination:", highestCombination);
-    console.log("CPU Highest combination:", cpuhighestCombination);
-    console.log('player got: ', highestCombination.showCardHighestText)
-    console.log('cpu got: ', cpuhighestCombination.showCardcpuHighestText)
+    // console.log("Player Highest combination:", highestCombination);
+    // console.log("CPU Highest combination:", cpuhighestCombination);
+    
   } // End of deal()
 
   function Winner(){
     const boardCards = [card1, card2, card3, card4, card5];
     const allCards = [...boardCards, playerCard1, playerCard2];
     const cpuCards = [...boardCards, playerCard3, playerCard4];
-    let re = document.getElementById("result")
+    // let re = document.getElementById("result")
     const highestCombination = playerCard1.checkCardValue1(allCards);
     const cpuhighestCombination = playerCard3.checkCardValue2(cpuCards);
+    console.log("Player Highest combination:", highestCombination);
+    console.log("CPU Highest combination:", cpuhighestCombination);
+    console.log('player got: ', highestCombination.showCardHighestText);
+    console.log('cpu got: ', cpuhighestCombination.showCardcpuHighestText);
     if (highestCombination.highestCombination > cpuhighestCombination.cpuhighestCombination){
       // re.innerHTML = "Winner is player"
       // alert("c")
@@ -405,6 +489,7 @@ class Deck {
       // re.innerHTML = "Draw"
       // alert("Draw");
       drawSound.play()
+      
       Swal.fire({
         title: "Draw",
         text: "Let's start a new game?",
@@ -434,7 +519,7 @@ class Deck {
   }
   
   function nextStep(el) {
-    let re = document.getElementById("result")
+    // let re = document.getElementById("result")
     if (!card1.flipped) {
       cardSound.play()
       card1.flip();
@@ -464,14 +549,8 @@ class Deck {
     // }
     else {
       Winner()
-      re.innerHTML = ""
       deal();
       el.innerHTML = "Reveal first 3 cards.";
     }
   } // End of nextStep()
   
-  function surrnder() {
-    deal();
-  }
-  
- 
