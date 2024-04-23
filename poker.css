@@ -101,7 +101,7 @@ button {
 }
 
 
-ปุ่มที่เมาชี้ทำนูนขึ้น
+/* ปุ่มที่เมาชี้ทำนูนขึ้น */
 button:hover {
   background-color: #FFC229;
   box-shadow: #FF6314 0 -6px 8px inset;
@@ -118,6 +118,27 @@ button:active {
     padding: .75rem 2rem;
   }
 }
+
+
+/* *************** bg music ********************** */
+#toggleButton{
+  position: absolute;
+  top: 29px; /* กำหนดระยะห่างจากด้านบนของหน้าเว็บ */
+  right: 100px; /* กำหนดระยะห่างจากด้านขวาของหน้าเว็บ */
+  width: 70px; /* กำหนดความกว้างของปุ่ม */
+  height: 50px; /* กำหนดความสูงของปุ่ม */
+  /* text-align:center; จัดข้อความให้อยู่ตรงกลางของปุ่ม */
+  /* line-height: 30px; /* กำหนดความสูงของบรรทัดเพื่อให้ข้อความอยู่ตรงกลางของปุ่ม */
+  /* text-align: left; /* จัดข้อความไปทางซ้ายของปุ่ม */
+  /* padding-left: 20px; เพิ่มระยะห่างด้านซ้ายของข้อความ */ 
+  
+}
+.da{ 
+  position: absolute;
+  top: 8px;
+  left: 18px;
+}
+
 
 /* button::after {
  --slice-0: inset(50% 50% 50% 50%);
