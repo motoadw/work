@@ -554,3 +554,22 @@ class Deck {
     }
   } // End of nextStep()
   
+
+  // ********************** bg music ********************************
+  function toggleSound() {
+    if (isMuted) {
+      audio.play(); // เริ่มเล่นเพลง
+      audio.volume = 0.1; // เปิดเสียง
+      document.getElementById('da2').innerText = "🔊";
+    } else {
+      audio.pause(); // หยุดเล่นเพลง
+      audio.volume = 0; // ปิดเสียง
+      document.getElementById('da2').innerText = "🔇";
+    }
+    isMuted = !isMuted; // เปลี่ยนสถานะการเปิด-ปิดเสียง
+  }
+  
+  document.getElementById('toggleButton').addEventListener('click', toggleSound);
+  
+  var audio = document.getElementById('backgroundMusic');
+  var isMuted = false;
